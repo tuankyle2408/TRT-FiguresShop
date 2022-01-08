@@ -3,6 +3,7 @@ package com.example.trt_figuresshop.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -65,6 +66,13 @@ public class DangKiActivity extends AppCompatActivity {
                 .subscribe(
                         userModel -> {
                             if (userModel.isSuccess()){
+                                Utils.user_current.setEmail(str_email);
+                                Utils.user_current.setPassword(str_pass);
+                                Intent intent = new Intent(getApplicationContext(),DangNhapActivity.class);
+                                startActivity(intent);
+                                finish();
+
+
                                 Toast.makeText(getApplicationContext(), "Thanh Cong", Toast.LENGTH_SHORT).show();
                             }else {
                                 Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_SHORT).show();
